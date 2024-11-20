@@ -73,7 +73,7 @@ header img {
 
 /* First section - Best movie */
 
-#best-movie h2 {
+#best-movie > h2 {
     margin: 44px 0 32px 0;
 }
 
@@ -89,24 +89,21 @@ header img {
     height: 100%;
 }
 
-#best-movie .right {
-    position: relative;
+#best-movie .right h2 {
+    margin-bottom: 32px;
 }
 
-#best-movie .right h2 {
-    margin-top: 0;
+#best-movie .button {
+    display: flex;
+    justify-content: right;
+    margin-top: 32px;
 }
 
 #best-movie button {
-    background-color: var(--button);
+  background-color: var(--button);
     font-size: 24px;
     border-radius: 20px;
     padding: 15px 40px;
-    margin-top: 27px;
-    position: absolute;
-    bottom: 20px;
-    right: 0;
-   
 }
 
 #best-movie button:hover {
@@ -128,7 +125,8 @@ header img {
 .category .container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 50px;
+    gap: 44px;
+    justify-items: center;
 }
 
 .category .movie-container {
@@ -189,13 +187,14 @@ header img {
 }
 
 /* Modal */
+
 #modal {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--secondary-foreground);
-  padding: 20px;
+  padding: 24px 36px;
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
   z-index: 1000;
   border: 6px solid var(--foreground);
@@ -206,18 +205,141 @@ header img {
 }
 
 #modal.visible {
-  display: block;
+    display: grid;
+    grid-template-areas:
+    "left right"
+    "top top"
+    "bottom bottom";
+    gap: 24px;
+}
+
+body.visible {
+    overflow: hidden;
+}
+
+#modal .left {
+    grid-area: left
+}
+
+#modal .right {
+    grid-area: right;
+    justify-self: end;
+}
+
+#modal .top {
+  grid-area: top;
+}
+
+#modal .bottom {
+    grid-area: bottom;
+}
+
+#modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
 }
 
 #modal button {
     background-color: var(--button);
     font-size: 20px;
     border-radius: 30px;
-    padding: 15px 50px;
-    margin-top: 27px;
+    padding: 8px 50px;
+    margin-top: 32px;
 }
 
 #modal button:hover {
     background-color: rgba(250, 11, 11, 0.8);
     transition: 0.3s ease-in-out;
+}
+
+#modal .button-container {
+  display: flex;
+  justify-content: center;
+}
+
+#modal .movie-data {
+    display: flex;
+    gap: 6px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#modal .movie-data p {
+    font-weight: 600;
+}
+
+#modal .directors {
+    margin-top: 32px;
+}
+
+/* Responsive */
+
+@media all and (max-width:1536px) {
+    body {
+    margin: 60px 96px;
+}
+}
+
+@media all and (max-width:1280px) {
+    #best-movie > div {
+    gap: 26px;
+}
+    .category .container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px;
+}
+
+#modal.visible {
+    grid-template-areas:
+    "left"
+    "top"
+    "right"
+    "bottom";
+}
+
+#modal .right {
+    justify-self: center;
+}
+}
+
+@media all and (max-width:768px) {
+       body {
+    margin: 60px 48px;
+}
+
+#best-movie > div {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+#best-movie .right {
+    flex-direction: column;
+}
+
+#best-movie .right h2 {
+    margin-bottom: 4px;
+}
+
+#best-movie .button {
+  justify-content: center;
+}
+
+    .category .container {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 28px;
+}
+
+.choices {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 44px 0 32px 0;
+}
 }

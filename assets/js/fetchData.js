@@ -25,10 +25,10 @@ export async function fetchAllPagesData(url) {
   }
 }
 
-export async function fetchDataByParam(url, key, value) {
+export async function fetchDataByID(url, id) {
   try {
     const response = await fetch(
-      `${url}?${key}=${value}`
+      `${url}${id}`
     );
     const data = await response.json();
     return data;

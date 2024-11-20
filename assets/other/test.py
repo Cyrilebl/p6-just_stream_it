@@ -66,8 +66,6 @@ title = avatar["title"]
 # Le genre complet du film
 genres = avatar["genres"]
 # Sa date de sortie
-date_published = avatar["date_published"]
-# Sa classification (10+, 18+, etc.)
 year = avatar["year"]
 # Son score IMDB
 score = avatar["imdb_score"]
@@ -86,7 +84,6 @@ description = avatar["description"]
 
 print(title,
       genres,
-      date_published,
       year,
       score,
       directors,

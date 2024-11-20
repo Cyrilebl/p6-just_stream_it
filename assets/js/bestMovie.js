@@ -17,11 +17,14 @@ export function bestMovie(title_text, description_text, image_src) {
     image.src = image_src
 
   // Details button
+    const btn_div = document.createElement("div")
+    btn_div.classList.add("button")
     const button = document.createElement("button")
     button.innerText = "Détails"
-    button.classList.add("details")
+    button.classList.add("open-modal")
+    btn_div.appendChild(button)
 
     left.append(image)
-    right.append(title, description, button)
+    right.append(title, description, btn_div)
     container.append(left, right)
 }
