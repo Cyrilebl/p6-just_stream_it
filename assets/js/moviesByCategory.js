@@ -19,7 +19,7 @@ function moviesByCategory(category_id, movie_name, image_src) {
     // Details button
     const button = document.createElement("button")
     button.innerText = "Détails"
-    button.classList.add("details")
+    button.classList.add("open-modal")
 
     title_div.append(movie_title, button)
     movie_container.append(title_div, image)

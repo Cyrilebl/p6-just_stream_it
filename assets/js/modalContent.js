@@ -92,7 +92,7 @@ export function createModalContent(movie){
     left.append(title, year_genres_div, pg_duration_countries_div, imdb_score_div, directors)
     right.append(image)
     top.append(description)
-    bottom.append(actors, button_container)
+    bottom.append(actors)
 
-    container.append(left, right, top, bottom)
+    container.append(left, right, top, bottom, button_container)
 }

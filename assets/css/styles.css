@@ -184,6 +184,7 @@ header img {
     font-size: 30px;
     font-weight: 600;
     padding: 5px 16px;
+    cursor: pointer;
 }
 
 /* Modal */
@@ -209,7 +210,8 @@ header img {
     grid-template-areas:
     "left right"
     "top top"
-    "bottom bottom";
+    "bottom bottom"
+    "btn btn";
     gap: 24px;
 }
 
@@ -259,8 +261,8 @@ body.visible {
 }
 
 #modal .button-container {
-  display: flex;
-  justify-content: center;
+    grid-area: btn;
+    justify-self: center;
 }
 
 #modal .movie-data {

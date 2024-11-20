@@ -25,10 +25,10 @@ export async function fetchAllPagesData(url) {
   }
 }
 
-export async function fetchDataByID(url, id) {
+export async function fetchDataByID(id) {
   try {
     const response = await fetch(
-      `${url}${id}`
+      `http://127.0.0.1:8000/api/v1/titles/${id}`
     );
     const data = await response.json();
     return data;
