@@ -10,50 +10,49 @@
     <header>
       <img
         src="./assets/images/just_stream_it_logo.png"
-        alt="Logo just stream it"
+        alt="Logo for Just Stream It"
       />
       <h1>Vidéos à la demande</h1>
     </header>
-    <body>
-      <!-- Best film -->
-      <section id="best-movie">
-        <h2>Meilleur film</h2>
-        <div></div>
-      </section>
 
-      <!-- First category -->
-      <section id="first-category" class="category">
-        <div></div>
-      </section>
+    <!-- Best film -->
+    <section id="best-movie" aria-labelledby="best-movie-title">
+      <h2 id="best-movie-title">Meilleur film</h2>
+      <div></div>
+    </section>
 
-      <!-- Second category -->
-      <section id="second-category" class="category">
-        <div></div>
-      </section>
+    <!-- First category -->
+    <section id="first-category" class="category">
+      <div></div>
+    </section>
 
-      <!-- Third category -->
-      <section id="third-category" class="category">
-        <div></div>
-      </section>
+    <!-- Second category -->
+    <section id="second-category" class="category">
+      <div></div>
+    </section>
 
-      <!-- Category choice -->
-      <section>
-        <div class="choices">
-          <h2>Autres:</h2>
-          <form>
-            <label for="categories"></label>
-            <select name="categories" id="categories"></select>
-          </form>
-        </div>
-        <div id="fourth-category" class="category"></div>
-      </section>
+    <!-- Third category -->
+    <section id="third-category" class="category">
+      <div></div>
+    </section>
 
-      <!-- Modal -->
-      <section>
-        <div id="modal-overlay"></div>
-        <div id="modal" class="hidden"></div>
-      </section>
-      <script src="./assets/js/main.js" type="module" />
-    </body>
+    <!-- Category choice -->
+    <section>
+      <div class="choices">
+        <h2 id="category-choice-title">Autres:</h2>
+        <form>
+          <label for="categories"></label>
+          <select name="categories" id="categories"></select>
+        </form>
+      </div>
+      <div id="fourth-category" class="category"></div>
+    </section>
+
+    <!-- Modal -->
+    <section>
+      <div id="modal-overlay"></div>
+      <div id="modal" class="hidden"></div>
+    </section>
+    <script src="./assets/js/main.js" type="module"></script>
   </body>
 </html>
