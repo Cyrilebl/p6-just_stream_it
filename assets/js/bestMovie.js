@@ -15,6 +15,7 @@ export function bestMovie(title_text, description_text, image_src) {
     // Movie image
     const image = document.createElement("img")
     image.src = image_src
+    image.alt = `${title_text} image`
 
   // Details button
     const btn_div = document.createElement("div")

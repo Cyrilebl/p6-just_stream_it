@@ -15,6 +15,7 @@ function moviesByCategory(category_id, movie_name, image_src) {
     // Movie image
     const image = document.createElement("img")
     image.src = image_src
+    image.alt = `${movie_name} image`
 
     // Details button
     const button = document.createElement("button")
