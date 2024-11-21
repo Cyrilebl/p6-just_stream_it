@@ -1,4 +1,4 @@
-export function bestMovie(title_text, description_text, image_src) {
+export function bestMovieContent(title_text, description_text, image_src) {
   const container = document.querySelector("#best-movie div");
   const left = document.createElement("div");
   const right = document.createElement("div");

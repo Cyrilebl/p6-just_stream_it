@@ -1,12 +1,12 @@
-import { bestMovie } from "./bestMovie.js";
+import { bestMovieContent } from "./bestMovieContent.js";
 import { fetchAllCategories } from "./fecthAllCategories.js";
 import {
   fetchAllPagesData,
   fetchData,
   fetchDataByParamAndSort,
 } from "./fetchData.js";
+import { fetchMoviesByCategory } from "./fetchMoviesByCategory.js";
 import { modalForCategories } from "./modal.js";
-import { fetchMovieData } from "./moviesByCategory.js";
 
 // Best movie
 const best_score_data = await fetchDataByParamAndSort("imdb_score_min", 9.5);
@@ -17,28 +17,28 @@ const title_text = details["title"];
 const description_text = details["long_description"];
 const image_src = details["image_url"];
 
-bestMovie(title_text, description_text, image_src);
+bestMovieContent(title_text, description_text, image_src);
 
 // First category
 const first_category_best_movies = await fetchDataByParamAndSort(
   "genre",
   "mystery"
 );
-fetchMovieData("first-category", "mystery", first_category_best_movies);
+fetchMoviesByCategory("first-category", "mystery", first_category_best_movies);
 
 // Second category
 const second_category_best_movies = await fetchDataByParamAndSort(
   "genre",
   "comedy"
 );
-fetchMovieData("second-category", "comedy", second_category_best_movies);
+fetchMoviesByCategory("second-category", "comedy", second_category_best_movies);
 
 // Third category
 const third_category_best_movies = await fetchDataByParamAndSort(
   "genre",
   "sport"
 );
-fetchMovieData("third-category", "sport", third_category_best_movies);
+fetchMoviesByCategory("third-category", "sport", third_category_best_movies);
 
 // All categories list
 const all_categories = await fetchAllPagesData(
@@ -60,7 +60,7 @@ selectElement.addEventListener("change", async () => {
     "genre",
     selectedValue
   );
-  fetchMovieData("fourth-category", null, category_choice_best_movies);
+  fetchMoviesByCategory("fourth-category", null, category_choice_best_movies);
   console.log(category_choice_best_movies);
 
   // Fourth category modal
