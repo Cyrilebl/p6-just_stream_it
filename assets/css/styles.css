@@ -132,15 +132,17 @@ header img {
 .category .movie-container {
     position: relative;
     overflow: hidden;
-    width: 300px;
+    width: 250px;
     height: 100%; 
 }
 
-.category .title-div {
+.category .informations {
     background-color: rgba(0,0,0,0.5);
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 20px;
+    justify-content: space-between;
+    gap: 16px;
     padding: 15px 20px;
     width: 100%;
     position: absolute;
@@ -160,6 +162,7 @@ header img {
     border-radius: 30px;
     padding: 8px 20px;
     font-size: 14px;
+    margin-left: auto;
 }
 
 .category button:hover {
@@ -302,7 +305,8 @@ body.visible {
     "left"
     "top"
     "right"
-    "bottom";
+    "bottom"
+    "btn";
 }
 
 #modal .right {

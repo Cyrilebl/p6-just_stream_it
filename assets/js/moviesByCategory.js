@@ -5,8 +5,8 @@ function moviesByCategory(category_id, movie_name, image_src) {
     const movie_container = document.createElement("div")
     movie_container.classList.add("movie-container")
 
-    const title_div = document.createElement("div")
-    title_div.classList.add("title-div")
+    const informations = document.createElement("div")
+    informations.classList.add("informations")
 
     // Movie title
     const movie_title = document.createElement("h3")
@@ -21,8 +21,8 @@ function moviesByCategory(category_id, movie_name, image_src) {
     button.innerText = "Détails"
     button.classList.add("open-modal")
 
-    title_div.append(movie_title, button)
-    movie_container.append(title_div, image)
+    informations.append(movie_title, button)
+    movie_container.append(informations, image)
     container.append(movie_container)
 }
 
@@ -35,12 +35,11 @@ export function fetchMovieData(category_id, category_name, bestMovies){
     container.append(category)
     }
 
-    let i = 0
-    while(i < 6){
-    const movies = bestMovies[i]
-    const movie_name = movies["title"]
-    const image_src = movies["image_url"]
-    moviesByCategory(category_id, movie_name, image_src)
-    i++
+    // Iterate over the movies
+    for (let i = 0; i < bestMovies.length && i < 6; i++) {
+        const movies = bestMovies[i];
+        const movie_name = movies["title"];
+        const image_src = movies["image_url"];
+        moviesByCategory(category_id, movie_name, image_src);
     }
 }

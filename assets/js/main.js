@@ -1,9 +1,8 @@
-import { fetchData, fetchAllPagesData, fetchDataByID, fetchDataByParamAndSort } from "./fetchData.js"
+import { fetchData, fetchAllPagesData, fetchDataByParamAndSort } from "./fetchData.js"
 import { fetchMovieData } from "./moviesByCategory.js"
 import { bestMovie } from "./bestMovie.js"
 import { fetchAllCategories } from "./fecthAllCategories.js"
-import { createModalContent } from "./modalContent.js"
-import { openModal, closeModal } from "./openAndCloseModal.js"
+import { modalForCategories } from "./modal.js"
 
 // Best movie
 const best_score_data = await fetchDataByParamAndSort("imdb_score_min", 9.5)
@@ -44,53 +43,25 @@ selectElement.addEventListener("change", async ()=> {
 
   const category_choice_best_movies = await fetchDataByParamAndSort("genre", selectedValue)
   fetchMovieData("fourth-category", null, category_choice_best_movies)
+  console.log(category_choice_best_movies)
+
+  // Fourth category modal
+  const open_btn_choice = document.querySelectorAll("#fourth-category .open-modal")
+  modalForCategories(category_choice_best_movies, open_btn_choice)
 })
 
-// Modal informations
-const id = details["id"]
-const best_movie = await fetchDataByID(id)
-//createModalContent(best_movie)
-
-// Open and close modal
-const open_modal = document.querySelectorAll(".open-modal")
-open_modal.forEach((modalButton) => {
-  modalButton.addEventListener("click", openModal)
-});
-
-const close_modal = document.querySelector(".close-modal");
-if (close_modal) {
-  close_modal.addEventListener("click", closeModal);
-}
-
-
-function detailsButton (category, open_btn) {
-    const firstSixMovies = category.slice(0, 6);
-
-    for (let i = 0; i < firstSixMovies.length; i++) {
-    const movieID = firstSixMovies[i]["id"]
-
-    const open_modal = open_btn[i];
-
-    open_modal.addEventListener("click", async () => {
-        const movieData = await fetchDataByID(movieID)
-        createModalContent(movieData)
-
-        const close_modal = document.querySelector(".close-modal");
-    if (close_modal) {
-    close_modal.addEventListener("click", closeModal);
-    }
-    });
-    }
-}
+// Best movie modal
+const open_btn_best_movie = document.querySelectorAll("#best-movie .open-modal")
+modalForCategories(details, open_btn_best_movie)
 
 // First category modal
 const open_btn_first = document.querySelectorAll("#first-category .open-modal")
-detailsButton(first_category_best_movies, open_btn_first)
+modalForCategories(first_category_best_movies, open_btn_first)
 
 // Second category modal
 const open_btn_second = document.querySelectorAll("#second-category .open-modal")
-detailsButton(second_category_best_movies, open_btn_second)
+modalForCategories(second_category_best_movies, open_btn_second)
 
 // Third category modal
 const open_btn_third = document.querySelectorAll("#third-category .open-modal")
-detailsButton(third_category_best_movies, open_btn_third)
+modalForCategories(third_category_best_movies, open_btn_third)
