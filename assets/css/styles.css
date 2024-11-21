@@ -202,6 +202,8 @@ header img {
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
   z-index: 1000;
   border: 6px solid var(--foreground);
+  overflow: hidden;
+  max-height: 90%;
 }
 
 #modal.hidden {
@@ -216,6 +218,7 @@ header img {
     "bottom bottom"
     "btn btn";
   gap: 24px;
+  overflow-y: auto;
 }
 
 body.visible {

@@ -3,6 +3,7 @@ export function openModal() {
 
   modal.classList.remove("hidden");
   modal.classList.add("visible");
+  modal.scrollTop = 0;
   document.body.classList.add("visible");
 
   const overlay = document.getElementById("modal-overlay");
