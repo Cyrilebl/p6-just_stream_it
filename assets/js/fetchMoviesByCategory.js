@@ -3,11 +3,9 @@ import { categoryContent } from "./categoryContent.js";
 export function fetchMoviesByCategory(category_id, category_name, bestMovies) {
   // Category title
   if (category_name !== null) {
-    const container = document.getElementById(category_id);
-    const category = document.createElement("h2");
-    category.innerText =
+    const container_title = document.querySelector(`#${category_id} h2`);
+    container_title.innerText =
       category_name.charAt(0).toUpperCase() + category_name.slice(1);
-    container.append(category);
   }
 
   // Iterate over the movies

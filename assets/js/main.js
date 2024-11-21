@@ -7,15 +7,16 @@ import {
 } from "./fetchData.js";
 import { fetchMoviesByCategory } from "./fetchMoviesByCategory.js";
 import { modalForCategories } from "./modal.js";
+import { seeMoreButton } from "./seeMoreButton.js";
 
 // Best movie
 const best_score_data = await fetchDataByParamAndSort("imdb_score_min", 9.5);
 const url = best_score_data[0]["url"];
 
-const details = await fetchData(url);
-const title_text = details["title"];
-const description_text = details["long_description"];
-const image_src = details["image_url"];
+const best_movie_data = await fetchData(url);
+const title_text = best_movie_data["title"];
+const description_text = best_movie_data["long_description"];
+const image_src = best_movie_data["image_url"];
 
 bestMovieContent(title_text, description_text, image_src);
 
@@ -61,7 +62,6 @@ selectElement.addEventListener("change", async () => {
     selectedValue
   );
   fetchMoviesByCategory("fourth-category", null, category_choice_best_movies);
-  console.log(category_choice_best_movies);
 
   // Fourth category modal
   const open_btn_choice = document.querySelectorAll(
@@ -74,7 +74,7 @@ selectElement.addEventListener("change", async () => {
 const open_btn_best_movie = document.querySelectorAll(
   "#best-movie .open-modal"
 );
-modalForCategories(details, open_btn_best_movie);
+modalForCategories(best_movie_data, open_btn_best_movie);
 
 // First category modal
 const open_btn_first = document.querySelectorAll("#first-category .open-modal");
@@ -89,3 +89,5 @@ modalForCategories(second_category_best_movies, open_btn_second);
 // Third category modal
 const open_btn_third = document.querySelectorAll("#third-category .open-modal");
 modalForCategories(third_category_best_movies, open_btn_third);
+
+seeMoreButton();
