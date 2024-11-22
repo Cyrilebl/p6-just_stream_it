@@ -1,18 +1,18 @@
-import { categoryContent } from "./categoryContent.js";
+import { setCategoryContent } from "./setCategoryContent.js";
 
-export function fetchMoviesByCategory(category_id, category_name, bestMovies) {
+export function fetchMoviesByCategory(categoryId, categoryName, bestMovies) {
   // Category title
-  if (category_name !== null) {
-    const container_title = document.querySelector(`#${category_id} h2`);
-    container_title.innerText =
-      category_name.charAt(0).toUpperCase() + category_name.slice(1);
+  if (categoryName !== null) {
+    const categoryTitle = document.querySelector(`#${categoryId} h2`);
+    categoryTitle.innerText =
+      categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
   }
 
   // Iterate over the movies
   for (let i = 0; i < bestMovies.length && i < 6; i++) {
     const movies = bestMovies[i];
-    const movie_name = movies["title"];
-    const image_src = movies["image_url"];
-    categoryContent(category_id, movie_name, image_src);
+    const movieName = movies["title"];
+    const imageSrc = movies["image_url"];
+    setCategoryContent(categoryId, movieName, imageSrc);
   }
 }

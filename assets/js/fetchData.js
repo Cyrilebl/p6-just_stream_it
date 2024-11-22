@@ -9,16 +9,16 @@ export async function fetchData(url) {
 }
 
 export async function fetchAllPagesData(url) {
-  let all_results = [];
+  let allResults = [];
 
   try {
     while (url) {
       const response = await fetch(url);
       const data = await response.json();
-      all_results = all_results.concat(data.results);
+      allResults = allResults.concat(data.results);
       url = data.next;
     }
-    return all_results;
+    return allResults;
   } catch (error) {
     throw error;
   }
@@ -35,21 +35,21 @@ export async function fetchDataByID(id) {
 }
 
 export async function fetchDataByParamAndSort(key, value) {
-  let all_results = [];
+  let allResults = [];
 
   try {
-    const first_page_response = await fetch(
+    const firstPageResponse = await fetch(
       `http://127.0.0.1:8000/api/v1/titles/?${key}=${value}&sort_by=-imdb_score`
     );
-    const first_page_data = await first_page_response.json();
-    all_results = all_results.concat(first_page_data.results);
+    const firstPageData = await firstPageResponse.json();
+    allResults = allResults.concat(firstPageData.results);
 
-    if (first_page_data.next) {
-      const second_page_response = await fetch(first_page_data.next);
-      const second_page_data = await second_page_response.json();
-      all_results = all_results.concat(second_page_data.results);
+    if (firstPageData.next) {
+      const secondPageResponse = await fetch(firstPageData.next);
+      const secondPageData = await secondPageResponse.json();
+      allResults = allResults.concat(secondPageData.results);
     }
-    return all_results;
+    return allResults;
   } catch (error) {
     throw error;
   }

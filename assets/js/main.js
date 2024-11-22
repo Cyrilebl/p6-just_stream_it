@@ -1,93 +1,87 @@
-import { bestMovieContent } from "./bestMovieContent.js";
-import { fetchAllCategories } from "./fecthAllCategories.js";
 import {
   fetchAllPagesData,
   fetchData,
   fetchDataByParamAndSort,
 } from "./fetchData.js";
 import { fetchMoviesByCategory } from "./fetchMoviesByCategory.js";
-import { modalForCategories } from "./modal.js";
 import { seeMoreButton } from "./seeMoreButton.js";
+import { setBestMovieContent } from "./setBestMovieContent.js";
+import { setupCategoryModals } from "./setupCategoryModals.js";
+import { updateCategoryDropdown } from "./updateCategoryDropdown.js";
 
 // Best movie
-const best_score_data = await fetchDataByParamAndSort("imdb_score_min", 9.5);
-const url = best_score_data[0]["url"];
+const highScoreMovies = await fetchDataByParamAndSort("imdb_score_min", 9.5);
+const topRatedMovieUrl = highScoreMovies[0]["url"];
 
-const best_movie_data = await fetchData(url);
-const title_text = best_movie_data["title"];
-const description_text = best_movie_data["long_description"];
-const image_src = best_movie_data["image_url"];
+const bestMovieData = await fetchData(topRatedMovieUrl);
+const titleText = bestMovieData["title"];
+const descriptionText = bestMovieData["long_description"];
+const imageSrc = bestMovieData["image_url"];
 
-bestMovieContent(title_text, description_text, image_src);
+setBestMovieContent(titleText, descriptionText, imageSrc);
 
 // First category
-const first_category_best_movies = await fetchDataByParamAndSort(
-  "genre",
-  "mystery"
-);
-fetchMoviesByCategory("first-category", "mystery", first_category_best_movies);
+const firstCategory = await fetchDataByParamAndSort("genre", "mystery");
+fetchMoviesByCategory("first-category", "mystery", firstCategory);
 
 // Second category
-const second_category_best_movies = await fetchDataByParamAndSort(
-  "genre",
-  "comedy"
-);
-fetchMoviesByCategory("second-category", "comedy", second_category_best_movies);
+const secondCategory = await fetchDataByParamAndSort("genre", "comedy");
+fetchMoviesByCategory("second-category", "comedy", secondCategory);
 
 // Third category
-const third_category_best_movies = await fetchDataByParamAndSort(
-  "genre",
-  "sport"
-);
-fetchMoviesByCategory("third-category", "sport", third_category_best_movies);
+const thirdCategory = await fetchDataByParamAndSort("genre", "sport");
+fetchMoviesByCategory("third-category", "sport", thirdCategory);
 
 // All categories list
-const all_categories = await fetchAllPagesData(
+const genresList = await fetchAllPagesData(
   "http://127.0.0.1:8000/api/v1/genres/"
 );
-fetchAllCategories(all_categories);
+updateCategoryDropdown(genresList);
 
 // Choice category
-const selectElement = document.getElementById("categories");
+const categoryDropdown = document.getElementById("categories");
 
-selectElement.addEventListener("change", async () => {
-  const selectedValue = selectElement.value.toLowerCase();
-  const container = document.getElementById("fourth-category");
-  container.innerHTML = "";
-  const newDiv = document.createElement("div");
-  container.append(newDiv);
+categoryDropdown.addEventListener("change", async () => {
+  const selectedValue = categoryDropdown.value.toLowerCase();
+  const container = document.querySelector("#fourth-category .container");
+  container.innerText = "";
 
-  const category_choice_best_movies = await fetchDataByParamAndSort(
+  const moviesByCategoryChoice = await fetchDataByParamAndSort(
     "genre",
     selectedValue
   );
-  fetchMoviesByCategory("fourth-category", null, category_choice_best_movies);
+  fetchMoviesByCategory("fourth-category", null, moviesByCategoryChoice);
 
   // Fourth category modal
-  const open_btn_choice = document.querySelectorAll(
+  const choiceCategoryModalButtons = document.querySelectorAll(
     "#fourth-category .open-modal"
   );
-  modalForCategories(category_choice_best_movies, open_btn_choice);
+  setupCategoryModals(moviesByCategoryChoice, choiceCategoryModalButtons);
 });
 
 // Best movie modal
-const open_btn_best_movie = document.querySelectorAll(
+const bestMovieModalButtons = document.querySelectorAll(
   "#best-movie .open-modal"
 );
-modalForCategories(best_movie_data, open_btn_best_movie);
+setupCategoryModals(bestMovieData, bestMovieModalButtons);
 
 // First category modal
-const open_btn_first = document.querySelectorAll("#first-category .open-modal");
-modalForCategories(first_category_best_movies, open_btn_first);
+const firstCategoryModalButtons = document.querySelectorAll(
+  "#first-category .open-modal"
+);
+setupCategoryModals(firstCategory, firstCategoryModalButtons);
 
 // Second category modal
-const open_btn_second = document.querySelectorAll(
+const secondCategoryModalButtons = document.querySelectorAll(
   "#second-category .open-modal"
 );
-modalForCategories(second_category_best_movies, open_btn_second);
+setupCategoryModals(secondCategory, secondCategoryModalButtons);
 
 // Third category modal
-const open_btn_third = document.querySelectorAll("#third-category .open-modal");
-modalForCategories(third_category_best_movies, open_btn_third);
+const thirdCategoryModalButtons = document.querySelectorAll(
+  "#third-category .open-modal"
+);
+setupCategoryModals(thirdCategory, thirdCategoryModalButtons);
 
+// Initialize "See More" button functionality
 seeMoreButton();

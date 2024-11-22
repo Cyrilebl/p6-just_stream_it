@@ -16,7 +16,6 @@ export function closeModal() {
   modal.classList.remove("visible");
   modal.classList.add("hidden");
   document.body.classList.remove("visible");
-  modal.innerText = "";
 
   const overlay = document.getElementById("modal-overlay");
   overlay.style.display = "none";
