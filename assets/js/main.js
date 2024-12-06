@@ -1,6 +1,6 @@
 import {
   fetchAllPagesData,
-  fetchData,
+  fetchDataByID,
   fetchDataByParamAndSort,
 } from "./fetchData.js";
 import { fetchMoviesByCategory } from "./fetchMoviesByCategory.js";
@@ -11,9 +11,9 @@ import { updateCategoryDropdown } from "./updateCategoryDropdown.js";
 
 // Best movie
 const highScoreMovies = await fetchDataByParamAndSort("imdb_score_min", 9.5);
-const topRatedMovieUrl = highScoreMovies[0]["url"];
+const topRatedMovieID = highScoreMovies[0]["id"];
 
-const bestMovieData = await fetchData(topRatedMovieUrl);
+const bestMovieData = await fetchDataByID(topRatedMovieID);
 const titleText = bestMovieData["title"];
 const descriptionText = bestMovieData["long_description"];
 const imageSrc = bestMovieData["image_url"];
