@@ -35,7 +35,9 @@ export async function fetchDataByParamAndSort(key, value) {
     allResults = allResults.concat(firstPageData.results);
 
     if (firstPageData.next) {
-      const secondPageResponse = await fetch(firstPageData.next);
+      const secondPageResponse = await fetch(
+        `http://127.0.0.1:8000/api/v1/titles/?${key}=${value}&sort_by=-imdb_score&page=2&page_size=1`
+      );
       const secondPageData = await secondPageResponse.json();
       allResults = allResults.concat(secondPageData.results);
     }

@@ -9,7 +9,7 @@ export function fetchMoviesByCategory(categoryId, categoryName, bestMovies) {
   }
 
   // Iterate over the movies
-  for (let i = 0; i < bestMovies.length && i < 6; i++) {
+  for (let i = 0; i < bestMovies.length; i++) {
     const movies = bestMovies[i];
     const movieName = movies["title"];
     const imageSrc = movies["image_url"];
